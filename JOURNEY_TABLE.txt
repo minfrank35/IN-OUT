@@ -46,10 +46,10 @@ CREATE TABLE MEMBER(
 
 CREATE TABLE JOURNEY(
 
-	ID 		NUMBER, 	/* 여행지 아이디 */
-	ORGANIZER_NAME NVARCHAR2(50), 	/*주최자*/
+	JOURNEY_NAME 	NVARCHAR2(50)  	/*여행지 이름*/
+	ORGANIZER_NAME NVARCHAR2(20), 	/*주최자*/
 	PARKING 		CHAR(1) CHECK (PARKING = "0" OR PARKING= "1"), /*주차장 여부*/
-	ROAD_BASE_ADDR	NVARCHAR2(100), 	/*도로명 주소*/
+	ROAD_BASE_ADDR	NVARCHAR2(100) PRIMARY KEY, /*도로명 주소*/ 
 	ZIP_CODE 	NUMBER, 	/* 우편번호 */
 	NOMINATION	NVARCHAR2(100),	/* 지명 */
 	/*도로명 주소나 지명주소를 이용해 주변 위치에 있는 여행지 검색*/	
