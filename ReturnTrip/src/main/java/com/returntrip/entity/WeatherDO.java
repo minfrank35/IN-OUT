@@ -9,22 +9,42 @@ import org.jsoup.select.Elements;
 
 public class WeatherDO {
 	private String location;
+	private String weather;
+	private String temperature;
+
 	private String fine_dust;
 	private String ultra_fine_dust;
 	private String ultraviolet_ray;
-	private String sunset_time;
 	public WeatherDO() {
 	
 	}
-	public WeatherDO(String location, String fine_dust, String ultra_fine_dust, String ultraviolet_ray, String sunset_time) {
+	public WeatherDO(String location, String fine_dust, String ultra_fine_dust, String ultraviolet_ray) {
 		super();
 		this.location = location;
 		this.fine_dust = fine_dust;
 		this.ultra_fine_dust = ultra_fine_dust;
 		this.ultraviolet_ray = ultraviolet_ray;
-		this.sunset_time = sunset_time;
 	}
 	
+	
+	public String getLocation() {
+		return location;
+	}
+	public void setLocation(String location) {
+		this.location = location;
+	}
+	public String getWeather() {
+		return weather;
+	}
+	public void setWeather(String weather) {
+		this.weather = weather;
+	}
+	public String getTemperature() {
+		return temperature;
+	}
+	public void setTemperature(String string) {
+		this.temperature = string;
+	}
 	public String getFine_dust() {
 		return fine_dust;
 	}
@@ -43,18 +63,8 @@ public class WeatherDO {
 	public void setUltraviolet_ray(String ultraviolet_ray) {
 		this.ultraviolet_ray = ultraviolet_ray;
 	}
-	public String getSunset_time() {
-		return sunset_time;
-	}
-	public void setSunset_time(String sunset_time) {
-		this.sunset_time = sunset_time;
-	}
 	
-	@Override
-	public String toString() {
-		return "WeatherDO [fine_dust=" + fine_dust + ", ultra_fine_dust=" + ultra_fine_dust + ", ultraviolet_ray="
-				+ ultraviolet_ray + ", sunset_time=" + sunset_time + "]";
-	}
+	
 	
 	
 }

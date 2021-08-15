@@ -10,8 +10,6 @@ public class UrlTest {
 	public static void main(String[] args) throws IOException {
 		WeatherCrawl wb = new WeatherNaverCrawl();
 		WeatherDO weatherdo = wb.getWeatherData("장유");
-		weatherdo.getFine_dust();
-		
 		
 		
 	}

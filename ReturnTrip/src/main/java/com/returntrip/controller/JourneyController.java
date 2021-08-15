@@ -17,7 +17,7 @@ public class JourneyController implements Controller {
 		String method = request.getMethod().toUpperCase();
 		
 		if(method.equals("GET")) {
-			String place = "장유";
+			String place = request.getParameter("place");
 			Journey journey = journeyService.getJourneyData(place);
 			
 			request.setAttribute("journey", journey);

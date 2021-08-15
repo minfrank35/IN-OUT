@@ -17,26 +17,32 @@ public class WeatherNaverCrawl implements WeatherCrawl{
 		// TODO Auto-generated method stub
 		WeatherDO weatherDO = null;
 		Document doc;
-		List<String> list;
 		
-		String url = "https://weather.naver.com/today/" + location;
+		String url = "https://search.naver.com/search.naver?where=nexearch&sm=top_hty&fbm=1&ie=utf8&query=" + location +"날씨";
 		try {
 			
 			doc = Jsoup.connect(url).get();
 			weatherDO = new WeatherDO();
-			list = new ArrayList<String>();
 			
-			Elements els = doc.select("div.ttl_area");
+			Elements els = doc.select("div.info_data");
+			System.out.println(els);
+
+			weatherDO.setTemperature(els.select("span.todaytemp").text());
 			
-			for(Element el : els.select("em")) {
+			String temp = els.select("p.cast_txt").text();
+			weatherDO.setWeather(temp.substring(0,temp.lastIndexOf(",")));
+			
+			Elements els2 = doc.select("div.sub_info");
+			
+			List<String> list = new ArrayList<String>();
+			for(Element el : els2.select("dd.lv1")) {
 				list.add(el.text());
 			}
 			
+			
 			weatherDO.setFine_dust(list.get(0));
 			weatherDO.setUltra_fine_dust(list.get(1));
-			weatherDO.setUltraviolet_ray(list.get(2));
-			weatherDO.setSunset_time(list.get(3));
-			
+			System.out.println(weatherDO.getTemperature());
 
 		} catch (IOException e) {
 			// TODO Auto-generated catch block

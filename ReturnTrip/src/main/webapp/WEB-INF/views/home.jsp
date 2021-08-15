@@ -31,7 +31,7 @@
 </style>
 </head>	
 <body>
-	<form action = "journeyResult" method = "GET"> <!-- default가 get -->
+	<form action = "journey" method = "GET"> <!-- default가 get -->
 		<section>
 			<div id = "center">
 			어디로 <span class = "sb">떠나고</span> 싶으신가요?<br>

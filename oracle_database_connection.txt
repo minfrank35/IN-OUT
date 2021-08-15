@@ -1,0 +1,37 @@
+방화벽 설정(데이터베이스를 가지고 있는 pc)
+제어판 - 네트워크 및 공유 센터 - windowsDefender 방화벽
+- 고급 설정 - 인바운드 규칙 우클릭후 새규칙 클릭 
+- 규칙종류 포트로 설정하고 다음 클릭
+- 특정 로컬 포트에 외부 사용자를 받을 포트번호 설정후 다음클릭
+- 연결 허용으로 설정후 다음클릭
+- 도메인, 개인, 공용 체크후 다음클릭
+- 이름과 설명은 자유롭게 설정
+
+
+tns 리스너 등록(외부 데이터베이스에 접속하려는 pc만)
+-tnsnames.ora 폴더 찾기
+(18c 오라클 버전 기준 tnsnames.ora 폴더경로 : C:\app\사용자\product\18.0.0\dbhomeXE\network\admin)
+cf) 사용자 이름이랑 폴더구조가 pc마다 다르기 때문에 일일이 찾아야 됩니다. 대부분은 위와 같습니다.
+-tnsnames.ora 폴더에 외부 데이터베이스 등록
+
+외부 데이터베이스 등록방법 예시
+oraora=
+  (DESCRIPTION =
+    (ADDRESS = (PROTOCOL = TCP)(HOST =  접속할 pc ip주소)(PORT = 방화벽에 등록된 포트번호))
+    (CONNECT_DATA =
+      (SERVER = DEDICATED)
+      (SERVICE_NAME = 접속할 데이터베이스 이름)
+    )
+  )
+
+
+콘솔 창 접속 방법
+sqlplus 사용자이름/비밀번호@oraora
+
+tns 신용 에러 해결방법
+- tnsnames.ora 파일을 찾은 폴더에서 sqlnet.ora를 찾아
+SQLNET.AUTHENTICATION_SERVICES= (NTS)를 주석처리(#을 앞에 붙이면 됩니다.)
+
+tns 접속 지연에러 해결방법
+- 위의 pc 방화벽 설정을 하시고도 안된다면 공유기 방화벽 때문에 안되는 것일수도 있으니 
+핫스팟이나 다른 와이파이를 사용해보시길 바랍니다.(학교 와이파이는 방화벽때문에 접속이 안됩니다.)

@@ -1,0 +1,67 @@
+
+CREATE TABLE NOTICE
+(
+     ID		NUMBER, 	/* 게시판 아이디 */
+     JOURNEY_ID	NUMBER, 	/* 어떤 여행지에 대한 리뷰인가를 참조하는 아이디 */
+     TITLE 	 	NVARCHAR2(100),	/* 제목 */
+     WRITER_ID 	NVARCHAR2(50),	/* 글쓴이 아이디 */
+     CONTENT 	CLOB,		/* 내용 */
+     REGDATE   	TIMESTAMP,	/* 업로드 날짜*/
+     HIT	 	NUMBER,		/* 조회수 */
+     FILES	 	NVARCHAR2(1000)	/* 첨부파일 */
+);
+
+CREATE TABLE "COMMENT"
+(
+     ID	 	NUMBER, 	/* 댓글 아이디*/
+     CONTENT 	NVARCHAR2(2000),	/* 내용 */
+     REGDATE   	TIMESTAMP,	 /* 작성 날짜*/
+     WRITER_ID 	NVARCHAR2(50),	/* 사용자 아이디*/
+     NOTICE_ID 	NUMBER 		/* 어느 게시글에 댓글을 남겼는가에 대한 참조 아이디*/
+);
+
+CREATE TABLE ROLE
+(
+     ID 		VARCHAR2(50), 	/* 등급 아이디 */
+     DISCRIPTION  	NVARCHAR2(500) 	/* 등급 이름 */
+);
+
+CREATE TABLE MEMBER_ROLE
+(
+     MEMBER_ID	 NVARCHAR2(50),	/* member 테이블 참조 아이디 */
+     ROLE_ID	VARCHAR2(50)	 /* ROLE 테이블 참조 아이디 */
+);
+
+CREATE TABLE MEMBER(
+	ID   		NVARCHAR2(50), 	/* 회원 아이디*/
+	PWD 	 	NVARCHAR2(50),	/* 회원 비번*/
+	NAME 	 	NVARCHAR2(50),	/* 회원 이름*/
+	GENDER 	 	NCHAR(2),	/* 성별 */
+	BIRTHDAY  	CHAR(10),		/* 생일 */
+	PHONE	 	CHAR(13),		/* 전화 */
+	REGDATE	  	DATE,		/* 가입 날짜 */
+	EMAIL	 	VARCHAR2(200), 	/* 이메일 */
+	WISH_JOURNEY 	VARCHAR2(50) 	/* 찜해둔 여행지 */
+);
+
+CREATE TABLE JOURNEY(
+
+	JOURNEY_NAME 	NVARCHAR2(50)  	/*여행지 이름*/
+	ORGANIZER_NAME NVARCHAR2(20), 	/*주최자*/
+	PARKING 		CHAR(1) CHECK (PARKING = "0" OR PARKING= "1"), /*주차장 여부*/
+	ROAD_BASE_ADDR	NVARCHAR2(100) PRIMARY KEY, /*도로명 주소*/ 
+	ZIP_CODE 	NUMBER, 	/* 우편번호 */
+	NOMINATION	NVARCHAR2(100),	/* 지명 */
+	/*도로명 주소나 지명주소를 이용해 주변 위치에 있는 여행지 검색*/	
+	PHONE 		CHAR(13),		/* 행사번호 */
+	EVENT_PER_STR 	TIMESTAMP,	/* 행사 시작 날짜 */
+	EVENT_PER_FIN 	TIMESTAMP,	/* 행사 마감 날짜 */
+	DAY_OFF 		DATE, 		/* 휴일 */
+	VISIT 		NUMBER, 	/* 여행지 방문수 */
+	HIT 		NUMBER,		/* 검색 수 */
+);
+
+
+
+
+
