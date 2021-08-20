@@ -46,19 +46,22 @@ CREATE TABLE MEMBER(
 
 CREATE TABLE JOURNEY(
 
-	JOURNEY_NAME 	NVARCHAR2(50)  	/*여행지 이름*/
+	JOURNEY_NAME 	NVARCHAR2(50) PRIMARY KEY,  	/*여행지 이름*/
 	ORGANIZER_NAME NVARCHAR2(20), 	/*주최자*/
-	PARKING 		CHAR(1) CHECK (PARKING = "0" OR PARKING= "1"), /*주차장 여부*/
-	ROAD_BASE_ADDR	NVARCHAR2(100) PRIMARY KEY, /*도로명 주소*/ 
-	ZIP_CODE 	NUMBER, 	/* 우편번호 */
+	PARKING 		VARCHAR2(90), /*주차장 여부*/
+	ROAD_BASE_ADDR	NVARCHAR2(100), /*도로명 주소*/ 
 	NOMINATION	NVARCHAR2(100),	/* 지명 */
 	/*도로명 주소나 지명주소를 이용해 주변 위치에 있는 여행지 검색*/	
-	PHONE 		CHAR(13),		/* 행사번호 */
-	EVENT_PER_STR 	TIMESTAMP,	/* 행사 시작 날짜 */
-	EVENT_PER_FIN 	TIMESTAMP,	/* 행사 마감 날짜 */
-	DAY_OFF 		DATE, 		/* 휴일 */
-	VISIT 		NUMBER, 	/* 여행지 방문수 */
-	HIT 		NUMBER,		/* 검색 수 */
+	PHONE 		VARCHAR(80),	/* 행사번호 */
+	J_TERM		NVARCHAR2(130),    /* 행사 기간 */
+	J_CONTENT		NVARCHAR2(2000),	/* 행사 설명*/
+	HOMEPAGE	NVARCHAR2(300),	/* 행사 설명*/
+	FEE		NVARCHAR2(100),	/* 요금*/
+    	SEARCH		NUMBER, /*검색수*/
+    	HIT 		NUMBER, /*조회수*/
+    	HASHTAG 	NVARCHAR2(50), /*해쉬태그*/
+    	IMG 		NVARCHAR2(200) /*이미지*/
+    
 );
 
 

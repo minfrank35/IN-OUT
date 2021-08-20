@@ -9,6 +9,8 @@ public interface JourneyDao {
 	
 	int insertJourney(Journey journey);
 	
+	int insertJourneyFromWeb(String xml);
+	
 	int updateJourney(Journey journey);
 	
 	int deleteJourney(String roadBaseAddr);

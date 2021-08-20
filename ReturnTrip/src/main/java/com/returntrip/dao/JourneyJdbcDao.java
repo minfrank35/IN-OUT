@@ -7,8 +7,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import com.returntrip.data.TourDaeguData;
+import com.returntrip.data.TourData;
 import com.returntrip.entity.Journey;
-import com.returntrip.entity.WeatherDO;
 
 public class JourneyJdbcDao implements JourneyDao {
 
@@ -104,21 +105,75 @@ public class JourneyJdbcDao implements JourneyDao {
 	public int insertJourney(Journey journey) {
 		// TODO Auto-generated method stub		
 		
-		String sql = "INSERT INTO JOURNEY VALUES(?,?,?,?,?,?,?,?,?,?,?)";
+		String sql = "INSERT INTO JOURNEY VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 		int result = 0;
 		try {
 			connect();
 			
 			stmt = conn.prepareStatement(sql);
 			
+			stmt.setString(1, journey.getJourneyName());
+			stmt.setString(2, journey.getOrganizerName());
+			stmt.setString(3, journey.getParking());
+			stmt.setString(4, journey.getRoad_base_addr());
+			stmt.setInt(5, journey.getZipCode());
+			stmt.setString(6, journey.getNomination());
+			stmt.setString(7, journey.getPhone());
+			stmt.setString(8, journey.getTerm());
+			stmt.setString(9, journey.getContent());
+			stmt.setString(10, journey.getHomepage());
+			stmt.setString(11, journey.getFee());
+			stmt.setInt(12, 0);
+			stmt.setInt(13, 0);
+			stmt.setString(14, "");
 			
+
 			result = stmt.executeUpdate();
 
+		} catch (ClassNotFoundException | SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			try {
+				disconnect();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		
+		return result;
 
+	}
+	
+	
+
+	@Override
+	public int updateJourney(Journey journey) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int deleteJourney(String roadBaseAddr) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int insertJourneyFromWeb(String xml) {
+		// TODO Auto-generated method stub
+		String sql = "INSERT INTO JOURNEY VALUES(?,?,?,?,?,?,?,?,?,?,?)";
+		int result = 0;
+		try {
+			connect();
 			
+			
+			stmt = conn.prepareStatement(sql);
+			result = stmt.executeUpdate();
 			
 			if (rs.next()) {
-				stmt.setString(1, journey.getJourneyName());
+				stmt.setString(1, .getJourneyName());
 				stmt.setString(2, journey.getOrganizerName());
 				stmt.setBoolean(3, journey.isParking());
 				stmt.setString(4, journey.getRoad_base_addr());
@@ -144,18 +199,6 @@ public class JourneyJdbcDao implements JourneyDao {
 		
 		return result;
 
-	}
-
-	@Override
-	public int updateJourney(Journey journey) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public int deleteJourney(String roadBaseAddr) {
-		// TODO Auto-generated method stub
-		return 0;
 	}
 
 }

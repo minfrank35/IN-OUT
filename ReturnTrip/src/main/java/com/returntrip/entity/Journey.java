@@ -6,36 +6,60 @@ import java.util.Date;
 public class Journey {
 	private String journeyName;
 	private String organizerName;
-	private boolean parking;
+	private String parking;
 	private String road_base_addr;
 	private int zipCode;
-	private String Nomination;
+	private String nomination;
 	private String phone;
-	private Timestamp eventStr;
-	private Timestamp eventFin;
-	private Date Dayoff;
+	private String term;
 	private int visit;
 	private int hit;
 	private WeatherDO weatherDO;
+	private String content;
+	private String homepage;
+	private String fee;
 	
+	
+	
+	public String getFee() {
+		return fee;
+	}
 
+	public void setFee(String fee) {
+		this.fee = fee;
+	}
+
+	public String getHomepage() {
+		return homepage;
+	}
+
+	public void setHomepage(String homepage) {
+		this.homepage = homepage;
+	}
+
+	public String getContent() {
+		return content;
+	}
+
+	public void setContent(String content) {
+		this.content = content;
+	}
 
 	public Journey() {
 		
 	}
 	
-	public Journey(String journeyName, String organizerName, boolean parking, String road_base_addr, int zipCode,
-			String nomination, String phone, Timestamp eventStr, Timestamp eventFin) {
+	public Journey(String journeyName, String organizerName, String parking, String road_base_addr, int zipCode,
+			String nomination, String phone, String term) {
 		super();
 		this.journeyName = journeyName;
 		this.organizerName = organizerName;
 		this.parking = parking;
 		this.road_base_addr = road_base_addr;
 		this.zipCode = zipCode;
-		Nomination = nomination;
+		this.nomination = nomination;
 		this.phone = phone;
-		this.eventStr = eventStr;
-		this.eventFin = eventFin;
+		this.term = term;
 	}
 	
 	public WeatherDO getWeatherDO() {
@@ -74,12 +98,15 @@ public class Journey {
 	public void setOrganizerName(String organizerName) {
 		this.organizerName = organizerName;
 	}
-	public boolean isParking() {
+	
+	public String getParking() {
 		return parking;
 	}
-	public void setParking(boolean parking) {
+
+	public void setParking(String parking) {
 		this.parking = parking;
 	}
+
 	public String getRoad_base_addr() {
 		return road_base_addr;
 	}
@@ -93,10 +120,10 @@ public class Journey {
 		this.zipCode = zipCode;
 	}
 	public String getNomination() {
-		return Nomination;
+		return nomination;
 	}
 	public void setNomination(String nomination) {
-		Nomination = nomination;
+		this.nomination = nomination;
 	}
 	public String getPhone() {
 		return phone;
@@ -104,31 +131,16 @@ public class Journey {
 	public void setPhone(String phone) {
 		this.phone = phone;
 	}
-	public Timestamp getEventStr() {
-		return eventStr;
-	}
-	public void setEventStr(Timestamp eventStr) {
-		this.eventStr = eventStr;
-	}
-	public Timestamp getEventFin() {
-		return eventFin;
-	}
-	public void setEventFin(Timestamp eventFin) {
-		this.eventFin = eventFin;
-	}
-	public Date getDayoff() {
-		return Dayoff;
-	}
-	public void setDayoff(Date dayoff) {
-		Dayoff = dayoff;
-	}
 	
-	@Override
-	public String toString() {
-		return "Journey [journeyName=" + journeyName + ", organizerName=" + organizerName + ", parking=" + parking
-				+ ", road_base_addr=" + road_base_addr + ", zipCode=" + zipCode + ", Nomination=" + Nomination
-				+ ", phone=" + phone + ", eventStr=" + eventStr + ", eventFin=" + eventFin + ", Dayoff=" + Dayoff + "]";
+	public String getTerm() {
+		return term;
 	}
+
+	public void setTerm(String term) {
+		this.term = term;
+	}
+
+	
 	
 	
 	
