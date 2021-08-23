@@ -1,5 +1,7 @@
 package com.returntrip.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -18,9 +20,9 @@ public class JourneyController implements Controller {
 		
 		if(method.equals("GET")) {
 			String place = request.getParameter("place");
-			Journey journey = journeyService.getJourneyData(place);
+			List<Journey> list = journeyService.getJourneyDatas(place);
 			
-			request.setAttribute("journey", journey);
+			request.setAttribute("list", list);
 			viewName ="journey.jsp";
 		}
 		return viewName;

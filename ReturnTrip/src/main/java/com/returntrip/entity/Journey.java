@@ -8,7 +8,6 @@ public class Journey {
 	private String organizerName;
 	private String parking;
 	private String road_base_addr;
-	private int zipCode;
 	private String nomination;
 	private String phone;
 	private String term;
@@ -18,9 +17,29 @@ public class Journey {
 	private String content;
 	private String homepage;
 	private String fee;
+	private String[] hashtag;
+	private String[] img;
+
+	public Journey() {
+		
+	}
 	
-	
-	
+	public String[] getHashtag() {
+		return hashtag;
+	}
+
+	public void setHashtag(String[] hashtag) {
+		this.hashtag = hashtag;
+	}
+
+	public String[] getImg() {
+		return img;
+	}
+
+	public void setImg(String[] img) {
+		this.img = img;
+	}
+
 	public String getFee() {
 		return fee;
 	}
@@ -45,22 +64,6 @@ public class Journey {
 		this.content = content;
 	}
 
-	public Journey() {
-		
-	}
-	
-	public Journey(String journeyName, String organizerName, String parking, String road_base_addr, int zipCode,
-			String nomination, String phone, String term) {
-		super();
-		this.journeyName = journeyName;
-		this.organizerName = organizerName;
-		this.parking = parking;
-		this.road_base_addr = road_base_addr;
-		this.zipCode = zipCode;
-		this.nomination = nomination;
-		this.phone = phone;
-		this.term = term;
-	}
 	
 	public WeatherDO getWeatherDO() {
 		return weatherDO;
@@ -113,12 +116,7 @@ public class Journey {
 	public void setRoad_base_addr(String road_base_addr) {
 		this.road_base_addr = road_base_addr;
 	}
-	public int getZipCode() {
-		return zipCode;
-	}
-	public void setZipCode(int zipCode) {
-		this.zipCode = zipCode;
-	}
+	
 	public String getNomination() {
 		return nomination;
 	}

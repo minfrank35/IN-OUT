@@ -1,16 +1,17 @@
 package com.returntrip.dao;
 
+import java.util.List;
+
 import com.returntrip.entity.Journey;
-import com.returntrip.entity.WeatherDO;
 
 public interface JourneyDao {
 	
 	Journey getJourneyData(String roadBaseAddr);
 	
-	int insertJourney(Journey journey);
+	List<Journey> getJourneyDatas(String place);
 	
-	int insertJourneyFromWeb(String xml);
-	
+	int initializeJourney(Journey journey);
+		
 	int updateJourney(Journey journey);
 	
 	int deleteJourney(String roadBaseAddr);

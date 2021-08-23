@@ -66,9 +66,12 @@ public class TourDaeguData implements TourData {
 	        	if(temp.length() > 15) {
 	        		temp.substring(0,14);
 	        	}
+	        	
+	        	// temp.substring(0,14);
+	        	//temp.substring(1);
 	        	journey.setPhone(temp);
 	        
-	        	
+	  
 	        	list.add(journey);
 	        }
 	       

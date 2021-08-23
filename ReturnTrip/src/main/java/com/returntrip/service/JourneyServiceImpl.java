@@ -19,6 +19,18 @@ public class JourneyServiceImpl implements JourneyService {
 	
 
 	@Override
+	public List<Journey> getJourneyDatas(String place) {
+		// TODO Auto-generated method stub
+		List<Journey> list = journeyDao.getJourneyDatas(place);
+		
+		for(int i = 0; i < 10; i++) {
+			list.get(i).setWeatherDO(naverWeather.getWeatherData(place));
+		}
+		
+		return list;
+	}
+	
+	@Override
 	public Journey getJourneyData(String place) {
 		// TODO Auto-generated method stub
 		Journey journey = journeyDao.getJourneyData(place);
@@ -44,5 +56,8 @@ public class JourneyServiceImpl implements JourneyService {
 		// TODO Auto-generated method stub
 		return 0;
 	}
+
+
+	
 
 }

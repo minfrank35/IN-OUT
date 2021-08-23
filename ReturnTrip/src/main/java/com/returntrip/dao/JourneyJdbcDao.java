@@ -1,14 +1,16 @@
 package com.returntrip.dao;
 
 import java.sql.Connection;
+
 import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
-import com.returntrip.data.TourDaeguData;
-import com.returntrip.data.TourData;
+import com.google.gson.Gson;
 import com.returntrip.entity.Journey;
 
 public class JourneyJdbcDao implements JourneyDao {
@@ -74,14 +76,17 @@ public class JourneyJdbcDao implements JourneyDao {
 				journey.setRoad_base_addr(rs.getString("ROAD_BASE_ADDR"));
 				journey.setJourneyName(rs.getString("JOURNEY_NAME"));
 				journey.setOrganizerName(rs.getString("ORGANIZER_NAME"));
-				journey.setZipCode(rs.getInt("ZIP_CODE"));
 				journey.setNomination(rs.getString("NOMINATION"));
 				journey.setPhone(rs.getString("PHONE"));
-				journey.setEventStr(rs.getTimestamp("EVENT_PER_STR"));
-				journey.setEventFin(rs.getTimestamp("EVENT_PER_FIN"));
-				journey.setDayoff(rs.getDate("DAY_OFF"));
-				journey.setVisit(rs.getInt("VISIT"));
-				journey.setHit(rs.getInt("HIT"));	
+				journey.setTerm(rs.getString("J_TERM"));
+				journey.setVisit(rs.getInt("SEARCH"));
+				journey.setHit(rs.getInt("HIT"));
+				journey.setContent(rs.getString("J_CONTENT"));
+				journey.setHomepage(rs.getString("Homepage"));
+				journey.setFee(rs.getString("FEE"));
+				journey.setHashtag((new Gson()).fromJson(rs.getString("HASHTAG"), String[].class));
+				journey.setImg((new Gson()).fromJson(rs.getString("IMG"), String[].class));
+
 			}
 
 
@@ -102,10 +107,11 @@ public class JourneyJdbcDao implements JourneyDao {
 	}
 
 	@Override
-	public int insertJourney(Journey journey) {
+	public int initializeJourney(Journey journey) {
 		// TODO Auto-generated method stub		
 		
 		String sql = "INSERT INTO JOURNEY VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+		
 		int result = 0;
 		try {
 			connect();
@@ -116,18 +122,17 @@ public class JourneyJdbcDao implements JourneyDao {
 			stmt.setString(2, journey.getOrganizerName());
 			stmt.setString(3, journey.getParking());
 			stmt.setString(4, journey.getRoad_base_addr());
-			stmt.setInt(5, journey.getZipCode());
-			stmt.setString(6, journey.getNomination());
-			stmt.setString(7, journey.getPhone());
-			stmt.setString(8, journey.getTerm());
-			stmt.setString(9, journey.getContent());
-			stmt.setString(10, journey.getHomepage());
-			stmt.setString(11, journey.getFee());
+			stmt.setString(5, journey.getNomination());
+			stmt.setString(6, journey.getPhone());
+			stmt.setString(7, journey.getTerm());
+			stmt.setString(8, journey.getContent());
+			stmt.setString(9, journey.getHomepage());
+			stmt.setString(10, journey.getFee());
+			stmt.setInt(11, 0);
 			stmt.setInt(12, 0);
-			stmt.setInt(13, 0);
+			stmt.setString(13, "");
 			stmt.setString(14, "");
 			
-
 			result = stmt.executeUpdate();
 
 		} catch (ClassNotFoundException | SQLException e) {
@@ -151,6 +156,7 @@ public class JourneyJdbcDao implements JourneyDao {
 	@Override
 	public int updateJourney(Journey journey) {
 		// TODO Auto-generated method stub
+		
 		return 0;
 	}
 
@@ -159,32 +165,62 @@ public class JourneyJdbcDao implements JourneyDao {
 		// TODO Auto-generated method stub
 		return 0;
 	}
+	
+
+	private String convertToCSV(int[] ids) {
+		StringBuilder csv = new StringBuilder();
+
+		for (int i=0; i<ids.length-1; i++) {
+			csv.append(ids[i]).append(", ");
+		}
+		csv.append(ids[ids.length-1]);
+		
+		return csv.toString();
+	}
 
 	@Override
-	public int insertJourneyFromWeb(String xml) {
+	public List<Journey> getJourneyDatas(String place) {
 		// TODO Auto-generated method stub
-		String sql = "INSERT INTO JOURNEY VALUES(?,?,?,?,?,?,?,?,?,?,?)";
-		int result = 0;
+		Journey journey = null;
+		List<Journey> list = null;
+		String sql = "SELECT * FROM JOURNEY WHERE ROAD_BASE_ADDR LIKE ? or NOMINATION LIKE ?";
+		
+		
 		try {
 			connect();
 			
-			
 			stmt = conn.prepareStatement(sql);
-			result = stmt.executeUpdate();
-			
-			if (rs.next()) {
-				stmt.setString(1, .getJourneyName());
-				stmt.setString(2, journey.getOrganizerName());
-				stmt.setBoolean(3, journey.isParking());
-				stmt.setString(4, journey.getRoad_base_addr());
-				stmt.setInt(5, journey.getZipCode());
-				stmt.setString(6, journey.getNomination());
-				stmt.setString(7, journey.getPhone());
-				stmt.setTimestamp(8, journey.getEventStr());
-				stmt.setTimestamp(9, journey.getEventFin());
-				stmt.setDate(10, (Date) journey.getDayoff());
 
+
+			stmt.setString(1, "%" + place + "%");
+			stmt.setString(2, "%" + place + "%");
+			
+			rs = stmt.executeQuery();
+			
+			list = new ArrayList<Journey>();
+			for(int i = 0 ; i < 10; i++) {
+				if (rs.next()) {
+					
+					journey = new Journey();
+					journey.setRoad_base_addr(rs.getString("ROAD_BASE_ADDR"));
+					journey.setJourneyName(rs.getString("JOURNEY_NAME"));
+					journey.setOrganizerName(rs.getString("ORGANIZER_NAME"));
+					journey.setNomination(rs.getString("NOMINATION"));
+					journey.setPhone(rs.getString("PHONE"));
+					journey.setTerm(rs.getString("J_TERM"));
+					journey.setVisit(rs.getInt("visit"));
+					journey.setHit(rs.getInt("HIT"));
+					journey.setContent(rs.getString("J_CONTENT"));
+					journey.setHomepage(rs.getString("Homepage"));
+					journey.setFee(rs.getString("FEE"));
+					journey.setHashtag((new Gson()).fromJson(rs.getString("HASHTAG"), String[].class));
+					journey.setImg((new Gson()).fromJson(rs.getString("img"), String[].class));
+					list.add(journey);
+				}
 			}
+
+
+			
 		} catch (ClassNotFoundException | SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -196,9 +232,10 @@ public class JourneyJdbcDao implements JourneyDao {
 				e.printStackTrace();
 			}
 		}
-		
-		return result;
-
+		return list;
 	}
 
+	
+	
+	
 }

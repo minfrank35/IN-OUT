@@ -55,13 +55,13 @@ CREATE TABLE JOURNEY(
 	PHONE 		VARCHAR(80),	/* 행사번호 */
 	J_TERM		NVARCHAR2(130),    /* 행사 기간 */
 	J_CONTENT		NVARCHAR2(2000),	/* 행사 설명*/
-	HOMEPAGE	NVARCHAR2(300),	/* 행사 설명*/
+	HOMEPAGE	NVARCHAR2(300),	/* 홈페이지 주소*/
 	FEE		NVARCHAR2(100),	/* 요금*/
-    	SEARCH		NUMBER, /*검색수*/
+    	VISIT		NUMBER, /*방문수*/
     	HIT 		NUMBER, /*조회수*/
     	HASHTAG 	NVARCHAR2(50), /*해쉬태그*/
     	IMG 		NVARCHAR2(200) /*이미지*/
-    
+    	LOC_CATEGORY  	NVARCHAR2(20) /*지역 카테고리*/
 );
 
 
