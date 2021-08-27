@@ -8,6 +8,8 @@ public interface JourneyDao {
 	
 	Journey getJourneyData(String roadBaseAddr);
 	
+	List<String> getCategory(String category);
+	
 	List<Journey> getJourneyDatas(String place);
 	
 	int initializeJourney(Journey journey);

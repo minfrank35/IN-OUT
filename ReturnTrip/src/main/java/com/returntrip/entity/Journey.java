@@ -19,11 +19,27 @@ public class Journey {
 	private String fee;
 	private String[] hashtag;
 	private String[] img;
+	private String category;
+
 
 	public Journey() {
 		
 	}
 	
+	
+	
+	public String getCategory() {
+		return category;
+	}
+
+
+
+	public void setCategory(String category) {
+		this.category = category;
+	}
+
+
+
 	public String[] getHashtag() {
 		return hashtag;
 	}

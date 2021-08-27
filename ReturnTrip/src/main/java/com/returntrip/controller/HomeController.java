@@ -12,6 +12,7 @@ public class HomeController implements Controller {
 	@Override
 	public String handleRequest(HttpServletRequest request, HttpServletResponse response, MemberService memberService, JourneyService journeyService) {
 		// TODO Auto-generated method stub
-		return "home.jsp";	}
+		return "home.jsp";
+		}
 
 }

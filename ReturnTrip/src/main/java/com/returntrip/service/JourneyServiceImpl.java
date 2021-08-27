@@ -58,6 +58,14 @@ public class JourneyServiceImpl implements JourneyService {
 	}
 
 
+	@Override
+	public List<String> getSearchDatas(String category) {
+		// TODO Auto-generated method stub
+		
+		return journeyDao.getCategory(category);
+	}
+
+
 	
 
 }

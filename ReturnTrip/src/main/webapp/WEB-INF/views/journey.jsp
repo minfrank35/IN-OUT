@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>${journey.journeyName}</title>
+<title>결과</title>
 </head>
 <body>
 	<c:if test="${list != null}">

@@ -70,8 +70,7 @@ public class TourDaeguData implements TourData {
 	        	// temp.substring(0,14);
 	        	//temp.substring(1);
 	        	journey.setPhone(temp);
-	        
-	  
+	        	journey.setCategory("대구");
 	        	list.add(journey);
 	        }
 	       

@@ -1,8 +1,6 @@
 package com.returntrip.dao;
 
 import java.sql.Connection;
-
-import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -86,7 +84,7 @@ public class JourneyJdbcDao implements JourneyDao {
 				journey.setFee(rs.getString("FEE"));
 				journey.setHashtag((new Gson()).fromJson(rs.getString("HASHTAG"), String[].class));
 				journey.setImg((new Gson()).fromJson(rs.getString("IMG"), String[].class));
-
+				journey.setCategory(rs.getString("CATEGORY"));
 			}
 
 
@@ -110,7 +108,7 @@ public class JourneyJdbcDao implements JourneyDao {
 	public int initializeJourney(Journey journey) {
 		// TODO Auto-generated method stub		
 		
-		String sql = "INSERT INTO JOURNEY VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+		String sql = "INSERT INTO JOURNEY VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 		
 		int result = 0;
 		try {
@@ -130,8 +128,9 @@ public class JourneyJdbcDao implements JourneyDao {
 			stmt.setString(10, journey.getFee());
 			stmt.setInt(11, 0);
 			stmt.setInt(12, 0);
-			stmt.setString(13, "");
-			stmt.setString(14, "");
+			stmt.setString(13, (new Gson()).toJson(journey.getHashtag(),String[].class));
+			stmt.setString(14, (new Gson()).toJson(journey.getImg(),String[].class));
+			stmt.setString(15, journey.getCategory());
 			
 			result = stmt.executeUpdate();
 
@@ -179,28 +178,21 @@ public class JourneyJdbcDao implements JourneyDao {
 	}
 
 	@Override
-	public List<Journey> getJourneyDatas(String place) {
+	public List<Journey> getJourneyDatas(String category) {
 		// TODO Auto-generated method stub
 		Journey journey = null;
 		List<Journey> list = null;
-		String sql = "SELECT * FROM JOURNEY WHERE ROAD_BASE_ADDR LIKE ? or NOMINATION LIKE ?";
-		
+		String sql = "SELECT * FROM JOURNEY WHERE category = ?"; //index : category 설정
 		
 		try {
 			connect();
-			
 			stmt = conn.prepareStatement(sql);
-
-
-			stmt.setString(1, "%" + place + "%");
-			stmt.setString(2, "%" + place + "%");
-			
+			stmt.setString(1, category);
 			rs = stmt.executeQuery();
 			
-			list = new ArrayList<Journey>();
-			for(int i = 0 ; i < 10; i++) {
-				if (rs.next()) {
-					
+			if (rs.isBeforeFirst()) {
+				list = new ArrayList<Journey>();
+				while(rs.next()) {
 					journey = new Journey();
 					journey.setRoad_base_addr(rs.getString("ROAD_BASE_ADDR"));
 					journey.setJourneyName(rs.getString("JOURNEY_NAME"));
@@ -215,12 +207,10 @@ public class JourneyJdbcDao implements JourneyDao {
 					journey.setFee(rs.getString("FEE"));
 					journey.setHashtag((new Gson()).fromJson(rs.getString("HASHTAG"), String[].class));
 					journey.setImg((new Gson()).fromJson(rs.getString("img"), String[].class));
+					journey.setCategory(rs.getString("Categoty"));
 					list.add(journey);
 				}
 			}
-
-
-			
 		} catch (ClassNotFoundException | SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -235,7 +225,35 @@ public class JourneyJdbcDao implements JourneyDao {
 		return list;
 	}
 
-	
-	
-	
+	@Override
+	public List<String> getCategory(String category) {
+		// TODO Auto-generated method stub
+		List<String> list = null;
+		String sql = "SELECT Categoty FROM JOURNEY where categoty LIKE ? group by Categoty"; //index : category 설정
+		
+		try {
+			connect();
+			stmt = conn.prepareStatement(sql);
+			stmt.setString(1, "%" +category + "%");
+			rs = stmt.executeQuery();
+			
+			if (rs.isBeforeFirst()) {
+				list = new ArrayList<String>();
+				while(rs.next()) {
+					list.add(rs.getString("categoty"));
+				}
+			}
+		} catch (ClassNotFoundException | SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			try {
+				disconnect();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		return list;
+	}
 }

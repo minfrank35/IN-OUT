@@ -1,0 +1,17 @@
+깃 명령어 정리
+git init //내 작업 파일이 있는 위치에서 쓰면 git에서 이 폴더를 관리해준다.
+git status //현재 폴더의 add/commit 상태 정보를 알려준다.
+git log //commit 순서 및 정보를 알려준다
+git config --global user.name //git 처음 생성시 이름
+git config --global user.email //git 처음 생성시 이메일
+git push //github의 branch로 내 변경사항을 올릴때 사용
+git pull //github에서 최신 변경 내용을 내폴더로 불러올때 사용
+git add //commit할 파일들을 add로 추가한다.
+git reset //commit한 시점들을 보고 폴더 상태를 이전으로 되돌릴때 사용하는 명령어
+git revert //reset은 변경사항을 삭제하고 되돌아오지만 revert는 변경사항을 저장해두고 다시 과거로 돌아가는 방법
+git checkout  //branch 변경을 할때 사용하는 명령어 (-b를 사용하면 생성 및 이동까지 바로가능)
+git branch // branch 생성 명령어
+git branch -D //branch 삭제 명령어
+git fetch //github에 branch 정보 파악할때 쓰는 명령어
+
+

@@ -13,6 +13,7 @@ public class HandlerMapping {
 		handlerMapper.put("/join", new JoinController());
 		handlerMapper.put("/login", new LoginController());
 		handlerMapper.put("/journey", new JourneyController());
+		handlerMapper.put("/search", new SearchController());
 
 	}
 	

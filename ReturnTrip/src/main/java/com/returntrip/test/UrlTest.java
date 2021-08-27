@@ -12,18 +12,18 @@ import com.returntrip.entity.Journey;
 public class UrlTest {
 	public static void main(String[] args) {
 		
-		  TourData td = new TourDaeguData();
-		  List<Journey> list = td.getTourData(223);
-		  
-		  System.out.println(list.size());
-		  for(int i = 0 ; i < list.size(); i++) {
-		  Journey journey = list.get(i); 
-		  JourneyDao jdao = new JourneyJdbcDao("oracle.jdbc.driver.OracleDriver","jdbc:oracle:thin:@localhost:1521/xepdb1","INOUT","oradb");
-		  jdao.initializeJourney(journey); 
-		  
-		  }
+		/*
+		 * TourData td = new TourDaeguData(); List<Journey> list = td.getTourData(223);
+		 * 
+		 * System.out.println(list.size()); for(int i = 0 ; i < list.size(); i++) {
+		 * Journey journey = list.get(i); JourneyDao jdao = new
+		 * JourneyJdbcDao("oracle.jdbc.driver.OracleDriver",
+		 * "jdbc:oracle:thin:@localhost:1521/xepdb1","INOUT","oradb");
+		 * jdao.initializeJourney(journey); }
+		 */
+		JourneyDao jdao = new JourneyJdbcDao("oracle.jdbc.driver.OracleDriver",	"jdbc:oracle:thin:@localhost:1521/xepdb1","INOUT","oradb");
+		 System.out.println(jdao.getCategory("대"));
 		 
-		
 //		 TourData td = new TourDaeguData();
 //		 List<Journey> list = td.getTourData(10);
 //		 

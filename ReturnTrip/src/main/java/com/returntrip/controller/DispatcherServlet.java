@@ -57,13 +57,13 @@ public class DispatcherServlet extends HttpServlet {
 		}
 				
 		// step #3. output processing results
-		if (viewName != null) {
+		if (viewName != null && viewName != "ajax") {
 			viewName = viewName.trim();
-			
 			viewName = "/WEB-INF/views/" + viewName;
 			
 			RequestDispatcher view = request.getRequestDispatcher(viewName);
 			view.forward(request, response);
+			
 		}
 	}
 
