@@ -22,8 +22,11 @@ public class UrlTest {
 		 * jdao.initializeJourney(journey); }
 		 */
 		JourneyDao jdao = new JourneyJdbcDao("oracle.jdbc.driver.OracleDriver",	"jdbc:oracle:thin:@localhost:1521/xepdb1","INOUT","oradb");
-		 System.out.println(jdao.getCategory("대"));
-		 
+		TourData td = new TourDaeguData(); List<Journey> list = td.getTourData(65);
+		for(int i = 0 ; i < list.size(); i++) { 
+		Journey journey = list.get(i);
+		jdao.initializeJourney(journey);
+		}
 //		 TourData td = new TourDaeguData();
 //		 List<Journey> list = td.getTourData(10);
 //		 
