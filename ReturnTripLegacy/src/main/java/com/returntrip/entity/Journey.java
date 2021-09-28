@@ -1,63 +1,96 @@
 package com.returntrip.entity;
 
-import java.sql.Timestamp;
-import java.util.Date;
+import java.util.Arrays;
 
 public class Journey {
 	private String journeyName;
 	private String cityName;
-	private String parking;
 	private String road_base_addr;
 	private String nomination;
+	private String lattitude;
+	private String longitude;
 	private String phone;
-	private String term;
-	private int visit;
-	private int hit;
-	private WeatherDO weatherDO;
 	private String content;
 	private String homepage;
-	private String fee;
-	private String[] hashtag;
-	private String[] img;
 	private String[] category;
-
+	private WeatherDO weatherDO;
+//	private String[] hashtag;
+//	private String[] img;
 
 	public Journey() {
-		
-	}
-	
-	
 
-	public String[] getHashtag() {
-		return hashtag;
 	}
 
-	public void setHashtag(String[] hashtag) {
-		this.hashtag = hashtag;
-	}
-
-	public String[] getImg() {
-		return img;
-	}
-
-	public void setImg(String[] img) {
-		this.img = img;
-	}
-
-	public String getFee() {
-		return fee;
-	}
-
-	public void setFee(String fee) {
-		this.fee = fee;
-	}
-
-	public String getHomepage() {
-		return homepage;
-	}
-
-	public void setHomepage(String homepage) {
+	public Journey(String journeyName, String cityName, String road_base_addr, String nomination, String lattitude,
+			String longitude, String phone, String content, String homepage, String[] category, WeatherDO weatherDO) {
+		super();
+		this.journeyName = journeyName;
+		this.cityName = cityName;
+		this.road_base_addr = road_base_addr;
+		this.nomination = nomination;
+		this.lattitude = lattitude;
+		this.longitude = longitude;
+		this.phone = phone;
+		this.content = content;
 		this.homepage = homepage;
+		this.category = category;
+		this.weatherDO = weatherDO;
+	}
+
+	public String getJourneyName() {
+		return journeyName;
+	}
+
+	public void setJourneyName(String journeyName) {
+		this.journeyName = journeyName;
+	}
+
+	public String getCityName() {
+		return cityName;
+	}
+
+	public void setCityName(String cityName) {
+		this.cityName = cityName;
+	}
+
+	public String getRoad_base_addr() {
+		return road_base_addr;
+	}
+
+	public void setRoad_base_addr(String road_base_addr) {
+		this.road_base_addr = road_base_addr;
+	}
+
+	public String getNomination() {
+		return nomination;
+	}
+
+	public void setNomination(String nomination) {
+		this.nomination = nomination;
+	}
+
+	public String getLattitude() {
+		return lattitude;
+	}
+
+	public void setLattitude(String lattitude) {
+		this.lattitude = lattitude;
+	}
+
+	public String getLongitude() {
+		return longitude;
+	}
+
+	public void setLongitude(String longitude) {
+		this.longitude = longitude;
+	}
+
+	public String getPhone() {
+		return phone;
+	}
+
+	public void setPhone(String phone) {
+		this.phone = phone;
 	}
 
 	public String getContent() {
@@ -68,7 +101,22 @@ public class Journey {
 		this.content = content;
 	}
 
-	
+	public String getHomepage() {
+		return homepage;
+	}
+
+	public void setHomepage(String homepage) {
+		this.homepage = homepage;
+	}
+
+	public String[] getCategory() {
+		return category;
+	}
+
+	public void setCategory(String[] category) {
+		this.category = category;
+	}
+
 	public WeatherDO getWeatherDO() {
 		return weatherDO;
 	}
@@ -76,76 +124,13 @@ public class Journey {
 	public void setWeatherDO(WeatherDO weatherDO) {
 		this.weatherDO = weatherDO;
 	}
-	
-	public int getVisit() {
-		return visit;
+
+	@Override
+	public String toString() {
+		return "Journey [journeyName=" + journeyName + ", cityName=" + cityName + ", road_base_addr=" + road_base_addr
+				+ ", nomination=" + nomination + ", lattitude=" + lattitude + ", longitude=" + longitude + ", phone="
+				+ phone + ", content=" + content + ", homepage=" + homepage + ", category=" + Arrays.toString(category)
+				+ ", weatherDO=" + weatherDO + "]";
 	}
 
-	public void setVisit(int visit) {
-		this.visit = visit;
-	}
-
-	public int getHit() {
-		return hit;
-	}
-
-	public void setHit(int hit) {
-		this.hit = hit;
-	}
-
-	public String getJourneyName() {
-		return journeyName;
-	}
-	public void setJourneyName(String journeyName) {
-		this.journeyName = journeyName;
-	}
-	public String getOrganizerName() {
-		return organizerName;
-	}
-	public void setOrganizerName(String organizerName) {
-		this.organizerName = organizerName;
-	}
-	
-	public String getParking() {
-		return parking;
-	}
-
-	public void setParking(String parking) {
-		this.parking = parking;
-	}
-
-	public String getRoad_base_addr() {
-		return road_base_addr;
-	}
-	public void setRoad_base_addr(String road_base_addr) {
-		this.road_base_addr = road_base_addr;
-	}
-	
-	public String getNomination() {
-		return nomination;
-	}
-	public void setNomination(String nomination) {
-		this.nomination = nomination;
-	}
-	public String getPhone() {
-		return phone;
-	}
-	public void setPhone(String phone) {
-		this.phone = phone;
-	}
-	
-	public String getTerm() {
-		return term;
-	}
-
-	public void setTerm(String term) {
-		this.term = term;
-	}
-
-	
-	
-	
-	
-	
-	
 }

@@ -20,9 +20,11 @@ public class JourneyController implements Controller {
 		
 		if(method.equals("GET")) {
 			String place = request.getParameter("place");
-			List<Journey> list = journeyService.getJourneyDatas(place);
-			
-			request.setAttribute("list", list);
+			Journey journey = journeyService.getJourneyData(place);
+			request.setAttribute("journey", journey);
+//			List<Journey> list = journeyService.getJourneyDatas(place);
+//			
+//			request.setAttribute("list", list);
 			viewName ="journey.jsp";
 		}
 		return viewName;

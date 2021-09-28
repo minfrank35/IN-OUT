@@ -8,13 +8,11 @@ import com.returntrip.webcrawl.WeatherCrawl;
 
 public class JourneyServiceImpl implements JourneyService {
 	private JourneyDao journeyDao;
-	private WeatherCrawl naverWeather;
 	
 	
 	public JourneyServiceImpl(JourneyDao journeyDao,WeatherCrawl naverWeather) {
 		super();
 		this.journeyDao = journeyDao;
-		this.naverWeather = naverWeather;
 	}
 	
 
@@ -23,10 +21,6 @@ public class JourneyServiceImpl implements JourneyService {
 		// TODO Auto-generated method stub
 		List<Journey> list = journeyDao.getJourneyDatas(place);
 		
-		for(int i = 0; i < 10; i++) {
-			list.get(i).setWeatherDO(naverWeather.getWeatherData(place));
-		}
-		
 		return list;
 	}
 	
@@ -34,8 +28,6 @@ public class JourneyServiceImpl implements JourneyService {
 	public Journey getJourneyData(String place) {
 		// TODO Auto-generated method stub
 		Journey journey = journeyDao.getJourneyData(place);
-
-		journey.setWeatherDO(naverWeather.getWeatherData(place));
 		return journey ;
 	}
 
@@ -61,7 +53,6 @@ public class JourneyServiceImpl implements JourneyService {
 	@Override
 	public List<String> getSearchDatas(String category) {
 		// TODO Auto-generated method stub
-		
 		return journeyDao.getCategory(category);
 	}
 

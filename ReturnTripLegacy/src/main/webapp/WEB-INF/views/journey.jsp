@@ -8,25 +8,38 @@
 <title>결과</title>
 </head>
 <body>
-	<c:if test="${list != null}">
+
+		journey 이름 : ${journey.journeyName}<br>
+		journey 도시 : ${journey.cityName}<br>
+		journey 도로명주소 : ${journey.road_base_addr}<br>
+		journey 내용 : ${journey.content}<br>
+		journey 지명 : ${journey.nomination}<br>
+		journey 위도 : ${journey.lattitude}<br>
+		journey 위도 : ${journey.longitude}<br>
+		journey 전화 : ${journey.phone}<br>
+		journey 홈페이지 : ${journey.homepage}<br>
+		journey 홈페이지 : ${journey.category}<br>
+		
+		journey 날씨 : ${journey.weatherDO.weather}<br>
+		journey 미세먼지 :${journey.weatherDO.fine_dust}<br>
+		journey 초미세먼지 :${journey.weatherDO.ultra_fine_dust}<br>
+
+	<%-- <c:if test="${list != null}">
 		<c:forEach var="l" items="${list}">
 		journey 이름 : ${list.journeyName}<br>
-		journey 주최자 : ${list.organizerName}<br>
-		journey 주차장 : ${list.parking}<br>
-		journey 도로명주소 : ${list.road_base_addr}<br>
-		journey 지명 : ${list.nomination}<br>
-		journey 전화 : ${list.phone}<br>
-		journey 기간 : ${list.term}<br>
-		journey 방문수 : ${list.visit}<br>
-		journey 조회수 : ${list.hit}<br>
-		journey 요금 : ${list.fee}<br>
-		journey 홈페이지 : ${list.homepage}<br>
-		journey 해쉬태그 : ${list.hashtag}<br>
-		journey 이미지 : ${list.img}<br>
-		journey 날씨 : ${list.weatherDO.weather}<br>
-		journey 미세먼지 :${list.weatherDO.fine_dust}<br>
-		journey 초미세먼지 :${list.weatherDO.ultra_fine_dust}<br>
+		journey 도시 : ${l.cityName}<br>
+		journey 도로명주소 : ${l.road_base_addr}<br>
+		journey 지명 : ${l.nomination}<br>
+		journey 위도 : ${l.lattitude}<br>
+		journey 위도 : ${l.longitude}<br>
+		journey 전화 : ${l.phone}<br>
+		journey 홈페이지 : ${l.homepage}<br>
+		journey 홈페이지 : ${l.category}<br>
+		
+		journey 날씨 : ${l.weatherDO.weather}<br>
+		journey 미세먼지 :${l.weatherDO.fine_dust}<br>
+		journey 초미세먼지 :${l.weatherDO.ultra_fine_dust}<br>
 		</c:forEach>
-	</c:if>
+	</c:if> --%>
 </body>
 </html>

@@ -1,6 +1,7 @@
 package com.returntrip.data;
 
 import java.io.IOException;
+
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
@@ -43,22 +44,8 @@ public class TourDaeguData implements TourData {
 	        	journey.setJourneyName(els.select("attractname").get(i).text());
 	        	for(int j = 0; j < 5; j ++) {
 	        		String temp = els.select("attr0" + Integer.toString(j+1)).get(i).text();
-	        		if(temp.length() > 0) {
-		        		if(temp.substring(0,temp.lastIndexOf("|")).equals("주차안내") || temp.substring(0,temp.lastIndexOf("|")).equals("주차시설")) {
-		        			journey.setParking(temp.substring(temp.lastIndexOf("|")+1,temp.length()));
-		        			continue;
-		        		}
-		        		else if(temp.substring(0,temp.lastIndexOf("|")).equals("이용시간")) {
-		        			journey.setTerm(temp.substring(temp.lastIndexOf("|")+1,temp.length()));
-		        			continue;
-		        		}
-		        		else if(temp.substring(0,temp.lastIndexOf("|")).equals("이용요금")) {
-		        			journey.setFee(temp.substring(temp.lastIndexOf("|")+1,temp.length()));
-		        			continue;
-		        		}
-	        		}
+	        		
 	        	}
-	        	
 	        	journey.setContent(els.select("attractcontents").get(i).text());
 	        	journey.setRoad_base_addr(els.select("address").get(i).text());
 	        	journey.setHomepage(els.select("homepage").get(i).text());
@@ -70,7 +57,6 @@ public class TourDaeguData implements TourData {
 	        	// temp.substring(0,14);
 	        	//temp.substring(1);
 	        	journey.setPhone(temp);
-	        	journey.setCategory("대구");
 	        	list.add(journey);
 	        }
 	       

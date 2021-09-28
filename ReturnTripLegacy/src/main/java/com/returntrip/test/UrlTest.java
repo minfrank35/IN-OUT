@@ -21,8 +21,9 @@ public class UrlTest {
 		 * "jdbc:oracle:thin:@localhost:1521/xepdb1","INOUT","oradb");
 		 * jdao.initializeJourney(journey); }
 		 */
-		JourneyDao jdao = new JourneyJdbcDao("oracle.jdbc.driver.OracleDriver",	"jdbc:oracle:thin:@localhost:1521/xepdb1","INOUT","oradb");
-		TourData td = new TourDaeguData(); List<Journey> list = td.getTourData(65);
+		JourneyDao jdao = new JourneyJdbcDao("oracle.jdbc.driver.OracleDriver",	"jdbc:oracle:thin:@db202109241747_medium?TNS_ADMIN=C://Users/minfr/Desktop/tools/Wallet_DB202109241747","admin","Password1234");
+		TourData td = new TourDaeguData(); 
+		List<Journey> list = td.getTourData(65);
 		for(int i = 0 ; i < list.size(); i++) { 
 		Journey journey = list.get(i);
 		jdao.initializeJourney(journey);

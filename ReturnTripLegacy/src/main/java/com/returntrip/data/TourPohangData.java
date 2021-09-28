@@ -44,7 +44,6 @@ public class TourPohangData implements TourData {
 	        	journey.setContent(els.select("contents").get(i).text());
 	        	journey.setRoad_base_addr(els.select("address").get(i).text());
 	        	journey.setHomepage(els.select("homepage").get(i).text());	        	
-	        	journey.setCategory("포항");
 	        	list.add(journey);
 	        }
 	       

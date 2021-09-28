@@ -1,10 +1,10 @@
 package com.returntrip.listener;
 
 import javax.servlet.ServletContext;
+
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 
-import org.apache.catalina.mapper.Mapper;
 
 import com.returntrip.controller.HandlerMapping;
 import com.returntrip.dao.JourneyDao;
