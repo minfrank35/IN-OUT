@@ -30,7 +30,12 @@ public class WeatherNaverCrawl implements WeatherCrawl{
 			weatherDO.setTemperature(els.select("span.todaytemp").text());
 			
 			String temp = els.select("p.cast_txt").text();
-			weatherDO.setWeather(temp.substring(0,temp.lastIndexOf(",")));
+			if(temp.contains(",")) {
+				weatherDO.setWeather(temp.substring(0,temp.lastIndexOf(",")));
+			}
+			else {
+				weatherDO.setWeather(null);
+			}
 			
 			Elements els2 = doc.select("div.sub_info");
 			

@@ -4,15 +4,17 @@ import java.util.List;
 
 import com.returntrip.dao.JourneyDao;
 import com.returntrip.entity.Journey;
+import com.returntrip.entity.WeatherDO;
 import com.returntrip.webcrawl.WeatherCrawl;
 
 public class JourneyServiceImpl implements JourneyService {
 	private JourneyDao journeyDao;
-	
+//	private WeatherCrawl naverWeather;
 	
 	public JourneyServiceImpl(JourneyDao journeyDao,WeatherCrawl naverWeather) {
 		super();
 		this.journeyDao = journeyDao;
+//		this.naverWeather = naverWeather;
 	}
 	
 
@@ -28,7 +30,9 @@ public class JourneyServiceImpl implements JourneyService {
 	public Journey getJourneyData(String place) {
 		// TODO Auto-generated method stub
 		Journey journey = journeyDao.getJourneyData(place);
-		return journey ;
+//		WeatherDO weather = naverWeather.getWeatherData(journey.getCityName());
+//		journey.setWeatherDO(weather);
+		return journey;
 	}
 
 	@Override
